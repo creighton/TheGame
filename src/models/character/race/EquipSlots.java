@@ -2,7 +2,6 @@ package models.character.race;
 
 import java.util.HashMap;
 
-import models.items.Foundry;
 import models.items.Item;
 
 public class EquipSlots {
@@ -20,7 +19,7 @@ public class EquipSlots {
 	}
 	
 	public boolean equip(Item item) {
-		if (! item.isEquippable()) return false;
+		if (! item.isEquipable()) return false;
 		
 		if (item.isWeapon()) {
 			return equipWeapon(item);
@@ -29,7 +28,7 @@ public class EquipSlots {
 	}
 	
 	public boolean unequip(Item item) {
-		if (item.isEquippable()) {
+		if (item.isEquipable()) {
 			if (item.isWeapon()) {
 				return unequipWeapon(item);
 			}
@@ -38,6 +37,28 @@ public class EquipSlots {
 			}
 		}
 		return false;
+	}
+	
+	public boolean hasWeapon() {
+		return ! weapons.isEmpty();
+	}
+	
+	public Item getWeapon() {
+		return weapons.get(0);
+	}
+	
+	public Item getWeapon(int i) {
+		return weapons.get(i);
+	}
+	
+	public Item getWeapon(Item item) {
+		int idx = weapons.indexOf(item);
+		if (idx < 0) return null;
+		return weapons.get(idx);
+	}
+	
+	public Item[] getWeapons() {
+		return weapons.toArray(new Item[]{});
 	}
 	
 	private boolean equipWeapon(Item item) {

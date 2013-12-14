@@ -35,6 +35,10 @@ public class Race {
 		this.equipslots = equipslots;
 	}
 	
+	public EquipSlots getEquipSlots() {
+		return equipslots;
+	}
+	
 	public Item getBaseWeapon() throws NoWeaponException {
 		throw new NoWeaponException("no weapons");
 	}

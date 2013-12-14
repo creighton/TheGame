@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import models.items.Item;
 
 public class SlotList extends ArrayList<Item>{
+	private static final long serialVersionUID = -5969047101920326399L;
 	int count = 0;
 
 	public SlotList(int initialCapacity) {

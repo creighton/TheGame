@@ -4,7 +4,7 @@ import models.character.race.EquipSlots.Location;
 import models.magic.enchantments.Enchantment;
 
 public class Item {
-	protected boolean equippable;
+	protected boolean equipable;
 	protected boolean weapon;
 	protected boolean armor;
 	
@@ -22,10 +22,10 @@ public class Item {
 	protected int volume;
 	protected Enchantment[] enchantments;
 
-	public Item(boolean isequippable, boolean isweapon, boolean isarmor, Location location, int range, String name, int damagemod,
+	public Item(boolean isequipable, boolean isweapon, boolean isarmor, Location location, int range, String name, int damagemod,
 			float speed, int size, int acmod, int dexmod, int deflec, int weight,
 			int volume, Enchantment[] enchantments) {
-		this.equippable = isequippable;
+		this.equipable = isequipable;
 		this.weapon = isweapon;
 		this.armor = isarmor;
 		this.location = location;
@@ -42,8 +42,8 @@ public class Item {
 		this.enchantments = enchantments;
 	}
 
-	public boolean isEquippable() {
-		return equippable;
+	public boolean isEquipable() {
+		return equipable;
 	}
 
 	public boolean isWeapon() {
@@ -139,7 +139,7 @@ public class Item {
 		}
 		return "Item: " + getName() + "\n" +
 				"\tBase name: " + name + "\n" +
-				"\tEquippable: " + equippable + "\n" +
+				"\tEquipable: " + equipable + "\n" +
 				"\tLocation: " + location + "\n" +
 				"\tRange: " + range + "\n" +
 				"\tSpeed: " + speed + "\n" +

@@ -4,6 +4,7 @@ import models.character.attributes.AbilityScores;
 import models.character.attributes.Language;
 import models.character.attributes.skills.Skills;
 import models.character.items.exceptions.NoWeaponException;
+import models.character.race.EquipSlots;
 import models.character.race.Race;
 import models.items.Item;
 
@@ -22,6 +23,8 @@ public class Character {
 	
 	protected Skills skills;
 	
+	private EquipSlots equipslots;
+	
 	private int baseHP = 100;
 	private int baseAC = 10;
 	private int baseDamage = 1;
@@ -36,6 +39,7 @@ public class Character {
 		this.weight = weight;
 		this.abilityScores = ab;
 		skills = null;
+		equipslots = charRace.getEquipSlots();
 		baseHP = (int)((baseHP + abilityScores.getConstitution()) * charRace.getHpMod());
 		baseAC = (int)((baseAC + abilityScores.getDexterity()) * charRace.getAcMod());
 		baseDamage = (int)((baseDamage + abilityScores.getStrength()/33) * charRace.getDamageMod());
@@ -69,6 +73,10 @@ public class Character {
 		return (isWeaponEquipped()) ? getEquippedWeapon() : charRace.getBaseWeapon();
 	}
 	
+	public Item getSpecialWeapon() throws NoWeaponException {
+		return charRace.getSpecialWeapon();
+	}
+	
 	public int getAC() {
 		return baseAC;
 	}
@@ -78,14 +86,26 @@ public class Character {
 	}
 	
 	private boolean isWeaponEquipped() {
-		return false;
+		return equipslots.hasWeapon();
 	}
 	
 	private Item getEquippedWeapon() {
-		return null;
+		return equipslots.getWeapon();
 	}
 	
 	public String toString() {
+		String weapon = "none";
+		try {
+			weapon = getCurrentWeapon().toString();
+		} catch (NoWeaponException e) {
+			// ignore
+		}
+		String special = "none";
+		try {
+			special = getSpecialWeapon().toString();
+		} catch (NoWeaponException e) {
+			// ignore
+		}
 		return "Hi I'm " + charName + "\n" +
 	           "A " + height + "ft, " + weight + "lb " + charRace.getName() + "\n" +
 			   "Hit Points: " + getHP() + "\n" +
@@ -96,6 +116,8 @@ public class Character {
 				"Constitution: " + getConstitution() + "\n" +
 				"Intelligence: " + getIntelligence() + "\n" +
 				"Wisdom: " + getWisdom() + "\n" +
-				"Charisma: " + getCharisma() + "\n";
+				"Charisma: " + getCharisma() + "\n" +
+				"Current Weapon: " + weapon + "\n" + 
+				"Special Weapon: " + special;
 	}
 }
