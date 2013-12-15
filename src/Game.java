@@ -6,9 +6,7 @@ import java.util.Scanner;
 import models.character.Character;
 import models.character.Character.Gender;
 import models.character.attributes.AbilityScores;
-import models.character.race.CreatureFactory;
 import models.character.race.Race;
-import models.character.race.Race.PlayerRaces;
 
 
 public class Game {
@@ -61,20 +59,20 @@ public class Game {
 	}
 	
 	private Race getRace(Scanner scan) {
-		ArrayList<PlayerRaces> races = new ArrayList<PlayerRaces>(Arrays.asList(PlayerRaces.values()));
-		PlayerRaces race = null;
+		ArrayList<Race> races = new ArrayList<Race>(Arrays.asList(Race.getCharacterRaces()));
+		Race race = null;
 		System.out.println("Now, what race do you want?");
 		boolean ok = false;
 		while (! ok) {
 			System.out.println("Pick from: " + races);
 			try {
-				race = PlayerRaces.valueOf(scan.nextLine().toUpperCase());
+				race = Race.valueOf(scan.nextLine().toUpperCase());
 				ok = true;
 			}
 			catch (IllegalArgumentException iae){/* bad input */}
 		}
 		
-		return CreatureFactory.getPlayerRace(race);
+		return race;
 	}
 	
 	private Gender getGender(Scanner scan) {

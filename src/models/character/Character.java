@@ -10,6 +10,7 @@ import models.items.Item;
 
 public class Character {
 	public enum Gender {MALE, FEMALE};
+	public enum Movement {AIR, GROUND, WATER, DIG, TELEPORT};
 	
 	protected String charName;
 	protected Race charRace;
@@ -107,7 +108,7 @@ public class Character {
 			// ignore
 		}
 		return "Hi I'm " + charName + "\n" +
-	           "A " + height + "ft, " + weight + "lb " + charRace.getName() + "\n" +
+	           "A " + height + "ft, " + weight + "lb, " + gender.toString().toLowerCase() + " " + charRace.getName() + "\n" +
 			   "Hit Points: " + getHP() + "\n" +
 	           "AC: " + getAC() + "\n" +
 			   "Abilities:\n" + 
