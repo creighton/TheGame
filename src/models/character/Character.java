@@ -1,7 +1,6 @@
 package models.character;
 
 import models.character.attributes.AbilityScores;
-import models.character.attributes.Language;
 import models.character.attributes.skills.Skills;
 import models.character.items.exceptions.NoWeaponException;
 import models.character.race.EquipSlots;
@@ -70,6 +69,16 @@ public class Character {
 		return Math.round(abilityScores.getCharisma() * charRace.getChrMod());
 	}
 	
+	public int getDamage() {
+		float mod = 1;
+		try {
+			mod = getCurrentWeapon().getDamageMod();
+		} catch (NoWeaponException e) {
+			// ignore.. no weapon 
+		}
+		return Math.round(baseDamage * mod);
+	}
+	
 	public Item getCurrentWeapon() throws NoWeaponException {
 		return (isWeaponEquipped()) ? getEquippedWeapon() : charRace.getBaseWeapon();
 	}
@@ -111,6 +120,7 @@ public class Character {
 	           "A " + height + "ft, " + weight + "lb, " + gender.toString().toLowerCase() + " " + charRace.getName() + "\n" +
 			   "Hit Points: " + getHP() + "\n" +
 	           "AC: " + getAC() + "\n" +
+			   "Damage: " + getDamage() + "\n" +
 			   "Abilities:\n" + 
 				"Strength: " + getStrength() + "\n" + 
 				"Dexterity: " + getDexterity() + "\n" +

@@ -9,22 +9,22 @@ public class Item {
 	protected boolean armor;
 	
 	protected Location location;
-	protected int range;
+	protected float range;
 	protected String name;
-	protected int damagemod;
+	protected float damagemod;
 	// # of turn cooldown.. 1 = can attack once per turn, 2 is once every other turn, .5 is twice a turn
 	protected float speed;
 	protected int size;
-	protected int acmod;
-	protected int dexmod;
-	protected int deflec;
-	protected int weight;
-	protected int volume;
+	protected float acmod;
+	protected float dexmod;
+	protected float deflec;
+	protected float weight;
+	protected float volume;
 	protected Enchantment[] enchantments;
 
-	public Item(boolean isequipable, boolean isweapon, boolean isarmor, Location location, int range, String name, int damagemod,
-			float speed, int size, int acmod, int dexmod, int deflec, int weight,
-			int volume, Enchantment[] enchantments) {
+	public Item(boolean isequipable, boolean isweapon, boolean isarmor, Location location, float range, String name, float damagemod,
+			float speed, int size, float acmod, float dexmod, float deflec, float weight,
+			float volume, Enchantment[] enchantments) {
 		this.equipable = isequipable;
 		this.weapon = isweapon;
 		this.armor = isarmor;
@@ -54,8 +54,8 @@ public class Item {
 		return armor;
 	}
 
-	public int getRange() {
-		int rng = range;
+	public float getRange() {
+		float rng = range;
 		for (Enchantment ench : enchantments) {
 			rng += ench.getRangeMod();
 		}
@@ -84,8 +84,8 @@ public class Item {
 		return n;
 	}
 
-	public int getDamageMod() {
-		int dmg = damagemod;
+	public float getDamageMod() {
+		float dmg = damagemod;
 		for (Enchantment ench : enchantments) {
 			dmg += ench.getDmgMod();
 		}
@@ -108,23 +108,23 @@ public class Item {
 		return size;
 	}
 
-	public int getAcmod() {
+	public float getAcmod() {
 		return acmod;
 	}
 
-	public int getDexmod() {
+	public float getDexmod() {
 		return dexmod;
 	}
 
-	public int getDeflec() {
+	public float getDeflec() {
 		return deflec;
 	}
 
-	public int getWeight() {
+	public float getWeight() {
 		return weight;
 	}
 
-	public int getVolume() {
+	public float getVolume() {
 		return volume;
 	}
 

@@ -2,6 +2,8 @@ package models.items;
 
 import static org.junit.Assert.*;
 
+import java.util.Random;
+
 import org.junit.Test;
 
 public class FoundryTest {
@@ -41,6 +43,12 @@ public class FoundryTest {
 		System.out.println(spec);
 		assertEquals("breath", spec.name);
 		assertEquals("fire breath", spec.getName());
+	}
+	
+	@Test
+	public void testCommonWeapon01() {
+		Item itm = Foundry.getCommonWeapon(new Random());
+		System.out.println(itm);
 	}
 
 }

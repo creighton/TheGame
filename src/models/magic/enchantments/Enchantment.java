@@ -4,26 +4,25 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Enchantment {
-	public enum type {ICE, FIRE, AIR, WATER, POISON, REJUVENATING, HOLY, DARK};
-	protected ArrayList<type> types;
+	protected ArrayList<EnchantmentTypes> types;
 	protected String prefix;
 	protected String postfix;
 	// -- weapon mods -- //
-	protected int dmgMod;
+	protected float dmgMod;
 	protected float speedMod;
-	protected int rangeMod;
+	protected float rangeMod;
 	
 	// -- armor mods -- //
-	protected int acMod;
-	protected int deflecMod;
-	protected int dexMod;
-	protected int volMod;
-	protected int wghtMod;
+	protected float acMod;
+	protected float deflecMod;
+	protected float dexMod;
+	protected float volMod;
+	protected float wghtMod;
 	
-	public Enchantment(type[] types, String prefix, String postfix, int dmgMod,
-			float speedMod, int rangeMod, int acMod, int deflecMod, int dexMod,
-			int volMod, int wghtMod) {
-		this.types = new ArrayList<Enchantment.type>(Arrays.asList(types));
+	public Enchantment(EnchantmentTypes[] types, String prefix, String postfix, float dmgMod,
+			float speedMod, float rangeMod, float acMod, float deflecMod, float dexMod,
+			float volMod, float wghtMod) {
+		this.types = new ArrayList<EnchantmentTypes>(Arrays.asList(types));
 		this.prefix = prefix;
 		this.postfix = postfix;
 		this.dmgMod = dmgMod;
@@ -36,7 +35,43 @@ public class Enchantment {
 		this.wghtMod = wghtMod;
 	}
 	
-	public ArrayList<type> getTypes() {
+	public void setTypes(ArrayList<EnchantmentTypes> types) {
+		this.types = types;
+	}
+
+	public void setDmgMod(int dmgMod) {
+		this.dmgMod = dmgMod;
+	}
+
+	public void setSpeedMod(float speedMod) {
+		this.speedMod = speedMod;
+	}
+
+	public void setRangeMod(int rangeMod) {
+		this.rangeMod = rangeMod;
+	}
+
+	public void setAcMod(int acMod) {
+		this.acMod = acMod;
+	}
+
+	public void setDeflecMod(int deflecMod) {
+		this.deflecMod = deflecMod;
+	}
+
+	public void setDexMod(int dexMod) {
+		this.dexMod = dexMod;
+	}
+
+	public void setVolMod(int volMod) {
+		this.volMod = volMod;
+	}
+
+	public void setWghtMod(int wghtMod) {
+		this.wghtMod = wghtMod;
+	}
+
+	public ArrayList<EnchantmentTypes> getTypes() {
 		return types;
 	}
 	
@@ -48,7 +83,7 @@ public class Enchantment {
 		return postfix;
 	}
 	
-	public int getDmgMod() {
+	public float getDmgMod() {
 		return dmgMod;
 	}
 	
@@ -56,27 +91,27 @@ public class Enchantment {
 		return speedMod;
 	}
 	
-	public int getRangeMod() {
+	public float getRangeMod() {
 		return rangeMod;
 	}
 	
-	public int getAcMod() {
+	public float getAcMod() {
 		return acMod;
 	}
 	
-	public int getDeflecMod() {
+	public float getDeflecMod() {
 		return deflecMod;
 	}
 	
-	public int getDexMod() {
+	public float getDexMod() {
 		return dexMod;
 	}
 	
-	public int getVolMod() {
+	public float getVolMod() {
 		return volMod;
 	}
 	
-	public int getWghtMod() {
+	public float getWghtMod() {
 		return wghtMod;
 	}
 	

@@ -4,7 +4,7 @@ import java.util.Random;
 
 import models.character.race.EquipSlots.Location;
 import models.magic.enchantments.Enchantment;
-import models.magic.enchantments.Enchantment.type;
+import models.magic.enchantments.EnchantmentTypes;
 
 public class Foundry {
 	public enum ItemTypes {WEAPON, ARMOR, POTIONS, STUFF};
@@ -12,37 +12,33 @@ public class Foundry {
 	public static Item getItem() {
 		Random r = new Random();
 		// randomly choose an ItemType
-		return getItem(ItemTypes.values()[r.nextInt(ItemTypes.values().length)]);
+		return getItem(ItemTypes.values()[r.nextInt(ItemTypes.values().length)], r);
 	}
 	
-	public static Item getItem(ItemTypes type) {
+	public static Item getItem(ItemTypes type, Random r) {
 		switch (type) {
 		case WEAPON:
-			return getRandomWeapon();
+			return getRandomWeapon(r);
 		case ARMOR:
-			return getRandomArmor();
+			return getRandomArmor(r);
 		case POTIONS:
-			return getPotion();
+			return getPotion(r);
 		case STUFF:
-			return getStuff();
+			return getStuff(r);
 		default:
 			return null;
 		}
 	}
 	
-	public static Item getRandomWeapon() {
+	public static Item getPotion(Random r) {
 		return null;
 	}
 	
-	public static Item getRandomArmor() {
+	public static Item getStuff(Random r) {
 		return null;
 	}
 	
-	public static Item getPotion() {
-		return null;
-	}
-	
-	public static Item getStuff() {
+	public static Item getRandomArmor(Random r) {
 		return null;
 	}
 	
@@ -54,18 +50,37 @@ public class Foundry {
 		return null;
 	}
 	
-	public static Item getMagicWeapon(Enchantment[] ench) {
-		Item i = getBaseWeapon(WeaponType.BREATH);
-		i.enchantments = ench;
+	public static Item getRandomWeapon(Random r) {
+		int n = r.nextInt(100);
+		if ( n < 80) 
+			return getCommonWeapon(r);
+		else if ( n < 95 )
+			return getUncommonWeapon(r);
+		else return getMagicWeapon(r);
+	}
+	
+	public static Item getCommonWeapon(Random r) {
+		WeaponType[] common = WeaponType.getCommonWeapons();
+		WeaponType wp = common[r.nextInt(common.length)];
+		return new Item(true, true, false, wp.location, wp.range, wp.name, 
+				wp.damagemod + r.nextInt(3), wp.speed, wp.size, wp.acmod, wp.dexmod, wp.deflec, wp.weight, wp.volume, 
+				new Enchantment[]{});
+		
+	}
+	
+	public static Item getUncommonWeapon(Random r) {
+		WeaponType[] common = WeaponType.getCommonWeapons();
+		WeaponType wp = common[r.nextInt(common.length)];
+		return new Item(true, true, false, wp.location, Math.round(wp.range * 1.25f), "uncommon " + wp.name, 
+				wp.damagemod + r.nextInt(6), wp.speed * .96f, wp.size, wp.acmod, wp.dexmod, wp.deflec, wp.weight, wp.volume, 
+				new Enchantment[]{});
+	}
+	
+	public static Item getMagicWeapon(Random r) {
+		Item i = getUncommonWeapon(r);
+		EnchantmentTypes x = EnchantmentTypes.values()[r.nextInt(EnchantmentTypes.values().length)];
+		i.enchantments = new Enchantment[] {new Enchantment(new EnchantmentTypes[]{x}, x.prefix, x.postfix, x.dmgMod, x.speedMod, x.rangeMod, x.acMod, x.deflecMod, x.dexMod, x.volMod, x.wghtMod)};
 		return i;
-	}
-	
-	public static Item getUncommonWeapon() {
-		return null;
-	}
-	
-	public static Item getCommonWeapon() {
-		return null;
 	}
 
 	public static Item getBaseWeapon(WeaponType wpntype) {
@@ -88,6 +103,6 @@ public class Foundry {
 	}
 	
 	private static Item specialFirebreath() {
-		return new Item(true, true, false, Location.HEAD, 20, "breath", 20, 10, 0, 0, 0, 0, 0, 0, new Enchantment[] {new Enchantment(new type[]{type.FIRE},"fire", "", 5, 0, 0, 0, 0, 0, 0, 0)});
+		return new Item(true, true, false, Location.HEAD, 20, "breath", 20, 10, 0, 0, 0, 0, 0, 0, new Enchantment[] {new Enchantment(new EnchantmentTypes[]{EnchantmentTypes.FIRE},"fire", "", 5, 0, 0, 0, 0, 0, 0, 0)});
 	}
 }
