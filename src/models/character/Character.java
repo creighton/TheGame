@@ -14,7 +14,7 @@ public class Character {
 	protected String charName;
 	protected Race charRace;
 	protected Gender gender;
-	protected int height;
+	protected float height;
 	protected int weight;
 	
 	protected int xp = 0;
@@ -31,7 +31,7 @@ public class Character {
 	
 //	protected Language[] languages;
 	
-	public Character(String name, Race race, Gender gender, int height, int weight, AbilityScores ab) {
+	public Character(String name, Race race, Gender gender, float height, int weight, AbilityScores ab) {
 		charName = name;
 		charRace = race;
 		this.gender = gender;

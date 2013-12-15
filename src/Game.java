@@ -90,12 +90,12 @@ public class Game {
 		return Gender.FEMALE;	
 	}
 	
-	private int getHeight(Scanner scan) {
-		int height = 0;
+	private float getHeight(Scanner scan) {
+		float height = 0;
 		
 		while (height == 0) {
 			System.out.println("How tall");
-			height = scan.nextInt();
+			height = scan.nextFloat();
 		}
 		return height;
 	}
