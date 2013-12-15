@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
-
+//Andy was here.  I made it this far finally :)  I will see about doing more later. Thus endeth the Andy.
 import models.character.Character;
 import models.character.Character.Gender;
 import models.character.attributes.AbilityScores;
