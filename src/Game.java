@@ -10,46 +10,61 @@ import models.character.race.CreatureFactory;
 import models.character.race.Race;
 import models.character.race.Race.PlayerRaces;
 
-
+//this is the game class
 public class Game {
 	
+	//this returns the array with valid scores
 	public static AbilityScores roll() {
 		Random r = new Random();
 		return new AbilityScores(getStat(r),getStat(r),getStat(r),getStat(r),getStat(r),getStat(r));
 	}
 	
+	//this returns the greatest number of three random numbers for the ability score
 	private static int getStat(Random r) {
+		//the highest of two random numbers
 		int stat = Math.max(r.nextInt(75) + 25, r.nextInt(75) + 25);
-		
+		//is this necessary?  the way I see it if the next int is higher... Okay that is wrong
+		//So yeah I don't get why this if statement.  You read one to test against seventy-five
+		//and you read another to test against what you got in the previous statement.
+		//I was expecting something like test one more number against stat and give the larger
+		//So again I'm not sure what is supposed to be happening here.
 		if (r.nextInt(100) > 75) 
 			stat = Math.max(r.nextInt(75) + 25, stat);
 		return stat;
 	}
 	
+	//this prints the Character
 	private static void printit(Character c){
 		System.out.println("------------------");
 		System.out.println(c);
 		System.out.println("------------------");
 	}
 	
+	//This is where the constructor for the Game goes
 	public Game() {}
 	
+	//Here's a loop for later use
 	private void gameloop() {
 		boolean stop = false;
 		while (!stop) {
-			
+			//stuff goes in here eventually
 		}
 	}
 	
+	//Prints the greeting to the gamer
+	//Any interest in having a login and a way to come back to the same character again?
 	private void showWelcome() {
 		System.out.println("Hello human");
 		System.out.println("You don't have a character.. how 'bout you make one");
 	}
 	
+	//Makes a Character with a Name, a Race, a Gender, a Height, a Weight, and Abilities
 	private Character getCharacter(Scanner scan) {
 		return new Character(getName(scan), getRace(scan), getGender(scan), getHeight(scan), getWeight(scan), getAbilities());
 	}
 	
+	//gets the name from the gamer
+	//returns any name not empty
 	private String getName(Scanner scan) {
 		String name = "";
 		do {
@@ -60,23 +75,33 @@ public class Game {
 		return name;
 	}
 	
+	
 	private Race getRace(Scanner scan) {
+		//race and races are two different variables
+		//races is a array of the available races to test against
+		//race is the race for this character
 		ArrayList<PlayerRaces> races = new ArrayList<PlayerRaces>(Arrays.asList(PlayerRaces.values()));
 		PlayerRaces race = null;
 		System.out.println("Now, what race do you want?");
+		//reads and tests the race from the gamer
+		//loops until good data
+		//catches error messages for bad data and when it gets good data is stops
 		boolean ok = false;
 		while (! ok) {
+			//print out the choices
 			System.out.println("Pick from: " + races);
 			try {
+				//read and assign the characters race to the variable race
 				race = PlayerRaces.valueOf(scan.nextLine().toUpperCase());
 				ok = true;
 			}
 			catch (IllegalArgumentException iae){/* bad input */}
 		}
-		
+		//okay I haven't read enough to follow where this goes and what this does
 		return CreatureFactory.getPlayerRace(race);
 	}
 	
+	//fairly straightforward get, test and assign Gender
 	private Gender getGender(Scanner scan) {
 		String gender = "";
 		do {
@@ -90,16 +115,29 @@ public class Game {
 		return Gender.FEMALE;	
 	}
 	
+	//gets the height from the gamer
+	//this doesn't set any limits on the height other than non-zero
+	//Do you want to have height be positive? or above some other limit?
+	//I don't see how to make height limits for different races
+	//without a lot of complicated stuff
+	//I'm not sure how interested you are in any of that right now or ever??
 	private int getHeight(Scanner scan) {
 		int height = 0;
 		
-		while (height == 0) {
+		while (height == 0) {//no min height and no max height
 			System.out.println("How tall");
 			height = scan.nextInt();
 		}
 		return height;
 	}
 	
+	//get the weight of the character from the gamer
+	//same questions as with height:
+	//this doesn't set any limits on the height other than non-zero
+	//Do you want to have height be positive? or above some other limit?
+	//I don't see how to make height limits for different races
+	//without a lot of complicated stuff
+	//I'm not sure how interested you are in any of that right now or ever??
 	private int getWeight(Scanner scan) {
 		int weight = 0;
 		
@@ -110,13 +148,20 @@ public class Game {
 		return weight;
 	}
 	
+	//gets the scores for the charatcer's abilities at once 
+	//and gives the games up to four choices of five options
 	private AbilityScores getAbilities() {
 		Scanner scan = new Scanner(System.in);
 		String inpt = "";
 		AbilityScores ab = null;
+		//five tries - break and stop when the gamer accepts
+		//the fifth questioning is unnecessary ??
 		for (int i = 0; i < 5; i++){
+			//calls and assigns random numbers
 			ab = roll();
+			//prints stats
 			System.out.println(ab);
+			//checks with gamer for acceptance
 			System.out.println("like these stats. y or n (try " + (i+1) + " outta 5)");
 			inpt = scan.nextLine().toLowerCase();
 			if ("y".equals(inpt)) break;
@@ -147,4 +192,4 @@ public class Game {
 		printit(player);
 	}
 
-}
+}  //okay that's my walkthrough for now of Game - time to walk the doggie
