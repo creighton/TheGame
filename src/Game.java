@@ -21,17 +21,13 @@ public class Game {
 	private static int getStat(Random r) {
 		//the highest of two random numbers
 		int stat = Math.max(r.nextInt(75) + 25, r.nextInt(75) + 25);
-		//is this necessary?  the way I see it if the next int is higher... Okay that is wrong
-		//So yeah I don't get why this if statement.  You read one to test against seventy-five
-		//and you read another to test against what you got in the previous statement.
-		//I was expecting something like test one more number against stat and give the larger
-		//So again I'm not sure what is supposed to be happening here.
+		//to continue the randomness - 25% of the time checks a third random number
 		if (r.nextInt(100) > 75) 
 			stat = Math.max(r.nextInt(75) + 25, stat);
 		return stat;
 	}
 	
-	//this prints the Character
+	//this prints the Character information - one giant string
 	private static void printit(Character c){
 		System.out.println("------------------");
 		System.out.println(c);
