@@ -23,7 +23,7 @@ public enum WeaponType {
 	
 	// location, range, name, dmgmod, speed, size, acmod, dexmod, deflec, weight, volume
 	AXE(Location.HANDS, 2, "axe", 3, .5f, 1, 0, 0, 0, 1, 1, false),
-	SWORD(Location.HANDS, 2, "sword", 3, 0, 1, 0, 0, 0, 1, 1, false),
+	SWORD(Location.HANDS, 2, "sword", 3, 1, 1, 0, 0, 0, 1, 1, false),
 	BOW(Location.HANDS, 30, "bow", 3, .5f, 2, 0, 0, 0, 1, 0, false);
 	
 	public final Location location;

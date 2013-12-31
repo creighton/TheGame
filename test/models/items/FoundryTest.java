@@ -23,6 +23,12 @@ public class FoundryTest {
 		assertEquals("head", head.getName());
 	}
 	@Test
+	public void testGetMagicWeapon() {
+		Item magicWeapon = Foundry.getMagicWeapon(new Random());
+		System.out.println(magicWeapon);
+//		assertEquals("hand", magicWeapon.name);
+//		assertEquals("head", magicWeapon.getName());
+	}@Test
 	public void testGetBaseWeaponFeet() {
 		Item feet = Foundry.getBaseWeapon(WeaponType.FEET);
 		System.out.println(feet);

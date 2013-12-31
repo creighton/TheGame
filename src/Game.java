@@ -47,6 +47,7 @@ public class Game {
 	
 	//Prints the greeting to the gamer
 	//Any interest in having a login and a way to come back to the same character again?
+	//okay so that's a firm maybe - for later
 	private void showWelcome() {
 		System.out.println("Hello human");
 		System.out.println("You don't have a character.. how 'bout you make one");
@@ -70,6 +71,10 @@ public class Game {
 	}
 	
 	
+	/**
+	 * @param scan
+	 * @return
+	 */
 	private Race getRace(Scanner scan) {
 		//race and races are two different variables
 		//races is a array of the available races to test against
@@ -118,10 +123,21 @@ public class Game {
 	private float getHeight(Scanner scan) {
 		float height = 0;
 		
-		while (height == 0) {//no min height and no max height
+//		while (height == 0) {//no min height and no max height
+//			System.out.println("How tall");
+//			height = scan.nextFloat();
+//		}
+		
+//		boolean goodHeight = false;
+		do {
 			System.out.println("How tall");
 			height = scan.nextFloat();
-		}
+//			if ((height >= 1000.0f) && (height <= 20000.0f)) {
+//				goodHeight = true;
+//			}
+//			goodHeight = ((height >= 1.5f) && (height <= 100f));
+		} while ((height <= 1.5f) || (height >= 100f));
+		
 		return height;
 	}
 	
