@@ -151,10 +151,16 @@ public class Game {
 	private int getWeight(Scanner scan) {
 		int weight = 0;
 		
-		while (weight == 0) {
+//		while (weight == 0) {
+//			System.out.println("How heavy");
+//			weight = scan.nextInt();
+//		}
+		
+		do {
 			System.out.println("How heavy");
 			weight = scan.nextInt();
-		}
+		} while ((weight < 6) || (weight > 5000));
+		
 		return weight;
 	}
 	
