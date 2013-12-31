@@ -129,6 +129,8 @@ public class Game {
 //		}
 		
 //		boolean goodHeight = false;
+		//updated the testing with a max height and min height
+		//the loop stops when the data is in range
 		do {
 			System.out.println("How tall");
 			height = scan.nextFloat();
