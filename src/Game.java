@@ -158,6 +158,8 @@ public class Game {
 //			weight = scan.nextInt();
 //		}
 		
+		//updated the testing with a max and min weight
+		//the loop stops when the data is in range
 		do {
 			System.out.println("How heavy");
 			weight = scan.nextInt();
